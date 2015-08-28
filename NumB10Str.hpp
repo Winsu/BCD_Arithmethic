@@ -1,37 +1,147 @@
-#include <istream>
-#include <ostream>
-#include <cstring>
-#include <string>
-#include <climits>
-#include <numeric>
-#include <limits>
-#include <cmath>
+#include "SParBCD.hpp"
+#include <tuple>
 
-using namespace std;
+class NumB10Str : public BasicNumB10Str {
+	private:
+		sign_e		signo;
+		SParBCD		aux;
 
-typedef char           			chint;
-typedef chint*           		p_chint;
-typedef unsigned char           uchint;
-typedef uchint*					p_uchint;
-typedef signed char				schint;
-typedef schint*					p_schint;
-typedef int*                    p_int;
-typedef signed short int 		ssint;
-typedef ssint*					p_ssint;
-typedef signed int              sint;
-typedef sint*					p_sint;
-typedef signed long int         slint;
-typedef slint*					p_slint;
-typedef signed long long int 	sllint;
-typedef sllint*					p_sllint;
-typedef unsigned char			uchint;
-typedef unsigned char			uci; // por uso amplio   
-typedef uchint*					p_uchint;
-typedef unsigned short int 		usint;
-typedef usint*                  p_usint;
-typedef unsigned int            uint;
-typedef uint*                   p_uint;
-typedef unsigned long int       ulint;
-typedef ulint*					p_ulint;
-typedef unsigned long long int 	ullint;
-typedef ullint* 				p_ullint;
+	public:
+		NumB10Str();
+		NumB10Str(const NumB10Str &);
+		NumB10Str(const BasicNumB10Str &);
+		NumB10Str(const string &);
+		NumB10Str(DigBCD);
+		NumB10Str(DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(sign_e,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD,DigBCD);
+		NumB10Str(SParBCD);
+		NumB10Str(ParBCD);
+		NumB10Str(N2DigsBCD);
+		NumB10Str(char);
+		NumB10Str(uchint);
+		NumB10Str(int);
+		NumB10Str(unsigned long long);
+		NumB10Str(long long);
+		usint ceros_a_la_izqda () const;
+		usint nueves_a_la_izqda () const ;
+		usint digs_no_significativos () const;
+		usint ceros_a_la_drcha () const;
+		bool operator == (const NumB10Str &) const;
+		bool operator != (const NumB10Str &) const;
+		bool operator >= (const NumB10Str &) const;
+		bool operator <= (const NumB10Str &) const;
+		bool operator >  (const NumB10Str &) const;
+		bool operator <  (const NumB10Str &) const;
+		NumB10Str operator + (const NumB10Str &) const;
+		NumB10Str operator - (const NumB10Str &) const;
+		NumB10Str operator * (const NumB10Str &) const;
+		NumB10Str operator / (const NumB10Str &) const;
+		NumB10Str operator % (const NumB10Str &) const;
+		NumB10Str operator + (SParBCD) const;
+		NumB10Str operator - (SParBCD) const;
+		NumB10Str operator * (SParBCD) const;
+		NumB10Str operator / (SParBCD) const;
+		NumB10Str operator % (SParBCD) const;
+		NumB10Str operator + (N2DigsBCD) const;
+		NumB10Str operator - (N2DigsBCD) const;
+		NumB10Str operator * (N2DigsBCD) const;
+		NumB10Str operator / (N2DigsBCD) const;
+		NumB10Str operator % (N2DigsBCD) const;
+		NumB10Str operator + (ParBCD) const;
+		NumB10Str operator - (ParBCD) const;
+		NumB10Str operator * (ParBCD) const;
+		NumB10Str operator / (ParBCD) const;
+		NumB10Str operator % (ParBCD) const;
+		NumB10Str operator + (DigBCD) const;
+		NumB10Str operator - (DigBCD) const;
+		NumB10Str operator * (DigBCD) const;
+		NumB10Str operator / (DigBCD) const;
+		NumB10Str operator % (DigBCD) const;
+		const NumB10Str & operator += (const NumB10Str &);
+		const NumB10Str & operator -= (const NumB10Str &);
+		const NumB10Str & operator *= (const NumB10Str &);
+		const NumB10Str & operator /= (const NumB10Str &);
+		const NumB10Str & operator %= (const NumB10Str &);
+		const NumB10Str & operator += (SParBCD);
+		const NumB10Str & operator -= (SParBCD);
+		const NumB10Str & operator *= (SParBCD);
+		const NumB10Str & operator /= (SParBCD);
+		const NumB10Str & operator %= (SParBCD);
+		const NumB10Str & operator += (N2DigsBCD);
+		const NumB10Str & operator -= (N2DigsBCD);
+		const NumB10Str & operator *= (N2DigsBCD);
+		const NumB10Str & operator /= (N2DigsBCD);
+		const NumB10Str & operator %= (N2DigsBCD);
+		const NumB10Str & operator += (ParBCD);
+		const NumB10Str & operator -= (ParBCD);
+		const NumB10Str & operator *= (ParBCD);
+		const NumB10Str & operator /= (ParBCD);
+		const NumB10Str & operator %= (ParBCD);
+		const NumB10Str & operator += (DigBCD);
+		const NumB10Str & operator -= (DigBCD);
+		const NumB10Str & operator *= (DigBCD);
+		const NumB10Str & operator /= (DigBCD);
+		const NumB10Str & operator %= (DigBCD);
+		NumB10Str operator -() const;
+		NumB10Str operator !() const;
+		NumB10Str abs() const;
+		const NumB10Str & mC10();
+		const NumB10Str & mC9();
+		const NumB10Str & absp();
+		NumB10Str div10 () const;
+		DigBCD rem10 () const;
+		const NumB10Str & div10p();
+		DigBCD rem10p();
+		NumB10Str div2 () const;
+		DigBCD rem2 () const;
+		const NumB10Str & div2p();
+		DigBCD rem2p();
+		NumB10Str div3() const;
+		const NumB10Str & div3p();
+		DigBCD rem3() const;
+		const NumB10Str & rem3p();
+		const DigBCD rem4() const;
+		DigBCD rem5() const;
+		DigBCD rem6() const;
+		NumB10Str div7 () const;
+		DigBCD rem7 () const;
+		const NumB10Str & div7p();
+		DigBCD rem7p();
+		const DigBCD rem8() const;
+		DigBCD rem9() const; 
+	private:
+		inline void	div3_step(pair< N2DigsBCD , usint > & S) const;
+		inline void div3p_step(pair< N2DigsBCD , usint > & S);
+		inline void	div7_step(pair< N2DigsBCD , usint > & S) const;
+		inline void div7p_step(pair< N2DigsBCD , usint > & S);
+		inline void	div_gen_step(const NumB10Str & , NumB10Str & , NumB10Str & , usint & ) const;
+		inline void divp_gen_step(const NumB10Str & , NumB10Str & , NumB10Str & , usint & );
+		inline void div_uno( NumB10Str & , NumB10Str & , NumB10Str & , const usint , const usint ) const;
+	public:
+		pair< NumB10Str , NumB10Str > EuclidDiv (const NumB10Str &) const;
+		pair< NumB10Str , const NumB10Str & > EuclidDivP (const NumB10Str & arg);
+	public:
+		const NumB10Str & operator ++ ();
+		NumB10Str operator ++ (int) const;
+		const NumB10Str & operator -- ();
+		NumB10Str operator -- (int) const;
+		const NumB10Str & reduce();
+		NumB10Str reduce() const;
+	};

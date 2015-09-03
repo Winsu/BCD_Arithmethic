@@ -1,7 +1,7 @@
 #include "ParBCD.hpp"
 using namespace std;
 
-DigBCD Div2(DigBCD arg) {		//Divide the number by 2 like this /
+DigBCD Div2(DigBCD arg) {		
 	switch (arg) {
 			case c:
 			case u:
@@ -24,7 +24,7 @@ DigBCD Div2(DigBCD arg) {		//Divide the number by 2 like this /
 		}
 }
 
-DigBCD Rem2(DigBCD arg) {		//divide the number by 2 like this %
+DigBCD Rem2(DigBCD arg) {	
 	switch (arg) {
 			case c:
 			case d:
@@ -352,7 +352,7 @@ const DigBCD & operator += (DigBCD & a,DigBCD b) {
 			a=b;
 			return a;
 		} else if (b==u) {
-			a=Sig(a);//sig means siguiente It obtains the nxt value in decimal
+			a=Sig(a);
 			return a;
 		} else if (a==u) {
 			a=Sig(b);
@@ -654,7 +654,7 @@ const DigBCD & operator += (DigBCD & a,DigBCD b) {
 			}
 }
 
-const DigBCD & operator -= (DigBCD & a,DigBCD b) { // Complemento a la Base 10 como complemento a 9 mas 1
+const DigBCD & operator -= (DigBCD & a,DigBCD b) {
 	if (b==c) return a;
 	else if (a==c) {
 			a=Sig((n-b).first);
@@ -964,9 +964,8 @@ istream & operator >> (istream & is,DigBCD & a) {
 }
 
 ostream & operator << (ostream & os,DigBCD a) {
-	os << char(Dig2Char(a)+'0');//Here we plus two value char(hexadecimal)
-	return os;//0 value is #9648 and `i #96
-}
+	os << char(Dig2Char(a)+'0');
+	return os;
 
 N2DigsBCD operator * (DigBCD a,DigBCD b) {
 	N2DigsBCD ret(c,c);
@@ -992,7 +991,7 @@ N2DigsBCD operator - (DigBCD a,DigBCD b) {
 	tempa -=  Dig2Int(b);
 	if (a<b) {
 			ret.first  = E;
-			ret.second = E;		//return two E when the result is negative
+			ret.second = E;		
 		} else {
 			ret.first  =(Int2Dig(tempa%10));
 			ret.second =(Int2Dig((tempa/10)%10));
@@ -1077,7 +1076,7 @@ DigBCD  operator - (DigBCD a) {
 	}
 }
 
-const DigBCD & mC9 (DigBCD & a) { // Complemento a nueve
+const DigBCD & mC9 (DigBCD & a) { 
 	switch (a) {
 			case c:
 				return (a=n);
@@ -1103,9 +1102,9 @@ const DigBCD & mC9 (DigBCD & a) { // Complemento a nueve
 			default:
 				return (a=E);
 		}
-}// Complemento a nueve
+}
 
-const DigBCD & mC10 (DigBCD & a) { // Complemento a la Base 10
+const DigBCD & mC10 (DigBCD & a) {
 	switch (a) {
 			case c:  {
 					a=c;
@@ -1153,7 +1152,7 @@ const DigBCD & mC10 (DigBCD & a) { // Complemento a la Base 10
 					return a;
 				}
 		}
-}// Complemento a la Base 10
+}
 
 N2DigsBCD DivRem (DigBCD a,DigBCD b) {
 	N2DigsBCD ret(c,c);

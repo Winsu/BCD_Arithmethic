@@ -25,7 +25,7 @@ typedef slint*					p_slint;
 typedef signed long long int 	sllint;
 typedef sllint*					p_sllint;
 typedef unsigned char			uchint;
-typedef unsigned char			uci; // por uso amplio   
+typedef unsigned char			uci;
 typedef uchint*					p_uchint;
 typedef unsigned short int 		usint;
 typedef usint*                  p_usint;

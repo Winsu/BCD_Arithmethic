@@ -1,5 +1,5 @@
 #include "ParBCD.hpp"
-#include <iostream>//borrar despues
+
 
 using namespace std;
 
@@ -53,37 +53,37 @@ ParBCD::ParBCD(const string & arg) {
 	first  = Char2Dig(arg.at(0));
 }
 
-ParBCD::operator usint () const { // nos da el valor en formato entero del ordenador
+ParBCD::operator usint () const { 
 		return (Dig2Int(first)+(Dig2Int(second)*10));
-	} // nos da el valor en formato entero del ordenador
+	} 
 
-ParBCD ParBCD::operator -() const { // menos unario (cambio de signo, en Complemento BCD);
+ParBCD ParBCD::operator -() const { 
 		ParBCD cpy(*this);
 		cpy.first = !first;
 		cpy.second = !second;
 		++cpy;
 		return cpy;
-	}// menos unario (cambio de signo, en Complemento BCD);
+	}
 
-ParBCD ParBCD::operator !  () const { // Complemento BCD menos 1
+ParBCD ParBCD::operator !  () const { 
 		ParBCD cpy(*this);
 		cpy.first = !first;
 		cpy.second = !second;
 		return cpy;
-	} // Complemento BCD menos 1
+	} 
 
-const ParBCD & ParBCD::mC10  () { // auto modificación menos unario (cambio de signo, en Complemento BCD);
+const ParBCD & ParBCD::mC10  () { 
 	first = !first;
 	second = !second;
 	++(*this);
 	return (*this);
-} // auto modificación menos unario (cambio de signo, en Complemento BCD);
+} 
 
-const ParBCD & ParBCD::mC9   () { // auto modificación Complemento BCD menos 1
+const ParBCD & ParBCD::mC9   () { 
 	first = !(first);
 	second = !(second);
 	return (*this);
-} // auto modificación Complemento BCD menos 1
+} 
 
 const ParBCD & ParBCD::operator = (const ParBCD & arg) {
 	first=arg.first;
@@ -286,18 +286,18 @@ const ParBCD & ParBCD::operator -= (const ParBCD & arg) {
 	uchint argdecs = Dig2Nat(arg.second);
 	uchint argtot = (arguds+(10*argdecs))%100;
 
-	if (rettot < argtot) {//this seems It represents negatives numbers..
-			argtot = 100 - argtot;//we subtracts to 100 the arg and later we plus this to ret(this)
+	if (rettot < argtot) {
+			argtot = 100 - argtot;
 			rettot += argtot;
 			rettot %= 100;
 			first = Nat2Dig(rettot % 10);
 			second = Nat2Dig((rettot / 10)%10);
 			return (*this);
-		} else if (rettot == argtot) {//In case the result is cero
+		} else if (rettot == argtot) {
 			first = c;
 			second = c;
 			return (*this);
-		} else {//It's the normal subtration
+		} else {
 			rettot -= argtot;
 			rettot %= 100;
 			first = Nat2Dig(rettot % 10);
@@ -314,9 +314,9 @@ const ParBCD & ParBCD::operator *= (const ParBCD & arg) {
 	uchint argdecs = Dig2Nat(arg.second);
 	uchint mult_low,mult_high;
 	
-	mult_low = (retuds * arguds);//all this part is to send the unit digit and the ten digit of 
-	mult_high = (retdecs * arguds)+(retuds * argdecs);//a multiplication
-	retuds = mult_low % 10;//It can not represnt more than two digit because is a ParBCD
+	mult_low = (retuds * arguds); 
+	mult_high = (retdecs * arguds)+(retuds * argdecs);
+	retuds = mult_low % 10;
 	retdecs = ((mult_low/10)+mult_high)%10;
 	
 	second = Nat2Dig(retdecs);
@@ -336,7 +336,7 @@ const ParBCD & ParBCD::operator /= (const ParBCD & arg) {
 			second = E;
 			first = E;
 			return (*this);
-		} else {//this is doing a normal division
+		} else {
 			retuds += (10*retdecs);
 			arguds += (10*argdecs);
 			retuds /= arguds;
@@ -361,7 +361,7 @@ const ParBCD & ParBCD::operator %= (const ParBCD & arg) {
 			second = E;
 			first = E;
 			return (*this);
-		} else {//it do a normal % operation
+		} else {
 			retuds += (10*retdecs);
 			arguds += (10*argdecs);
 			retuds %= arguds;
@@ -821,10 +821,10 @@ const ParBCD & ParBCD::operator %= (DigBCD arg) {
 }
 
 const ParBCD & ParBCD::operator ++ () {
-	if (first < n) {//if first is less than nine plus one and return
+	if (first < n) {
 			++first;
 			return (*this);
-		} else if (first == n) {//if it's equal than nine, put cero in first and increase second
+		} else if (first == n) {
 			first = c;
 			++second;
 			return (*this);
@@ -928,7 +928,7 @@ istream & operator >> (istream & in,ParBCD & arg) {
 }
 
 ostream & operator << (ostream & on,ParBCD arg) {
-	on  <<Dig2Char(arg.g_second()) //this function just get second
-	<< Dig2Char(arg.g_first());//this function just get first
+	on  <<Dig2Char(arg.g_second())
+	<< Dig2Char(arg.g_first());
 	return on;
 }

@@ -2,11 +2,11 @@
 
 typedef basic_string<DigBCD> BasicNumB10Str;
 
-class ParBCD : protected N2DigsBCD {//N2DigsBCD is the typedef of a class pair which contains two DigBCD that
-		friend istream & operator >> (istream &,ParBCD);//are enum,so it's a templat class with DigBCD types
+class ParBCD : protected N2DigsBCD {
+		friend istream & operator >> (istream &,ParBCD);
 		friend ostream & operator << (ostream &,ParBCD);
 	public:
-		ParBCD(); // constructor por defecto
+		ParBCD(); 
 		ParBCD(DigBCD,DigBCD);
 		ParBCD(const N2DigsBCD &);
 		explicit ParBCD(N2DigsBCD &);
@@ -14,8 +14,8 @@ class ParBCD : protected N2DigsBCD {//N2DigsBCD is the typedef of a class pair w
 		ParBCD(char,char);
 		ParBCD(const string &);
 		ParBCD(int,int);
-		ParBCD(const ParBCD &); // constructor copia
-		explicit ParBCD(ParBCD &); // constructor copia
+		ParBCD(const ParBCD &);
+		explicit ParBCD(ParBCD &); 
 		const ParBCD & operator = (const ParBCD &);
 		ParBCD & operator = (ParBCD &);
 		operator DigBCD() const;
@@ -35,11 +35,11 @@ class ParBCD : protected N2DigsBCD {//N2DigsBCD is the typedef of a class pair w
 		const ParBCD & operator *= (const ParBCD &);
 		const ParBCD & operator /= (const ParBCD &);
 		const ParBCD & operator %= (const ParBCD &);
-		operator usint () const; // nos da el valor en formato entero del ordenador
-		ParBCD operator -  () const; // menos unario (cambio de signo, en Complemento BCD);
-		ParBCD operator !  () const; // Complemento BCD menos 1
-		const ParBCD & mC10  (); // auto modificación menos unario (cambio de signo, en Complemento BCD);
-		const ParBCD & mC9   (); // auto modificación Complemento BCD menos 1
+		operator usint () const; 
+		ParBCD operator -  () const; 
+		ParBCD operator !  () const; 
+		const ParBCD & mC10  (); 
+		const ParBCD & mC9   (); 
 		const ParBCD & operator ++ ();
 		ParBCD operator ++ (int);
 		const ParBCD & operator -- ();

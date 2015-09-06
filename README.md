@@ -9,7 +9,7 @@ It will run if the compiler is set to work with -std=c++11
 
 #How to play with
 
-On the main file, the program contains different examples that use DigBCD and ParBCD, you can compile one example or more, It's your election, but you'll have to have in consideration the type that the example is using and if you have created a variable of that type and if it's already initialized.
+On the main file the programme contains different examples that use DigBCD and ParBCD. You can compile one example or more, it's your choice. Before you do, you'll have to consider the type that the example is using and you'll have to declare a variable with a specific type according to the example that you use. You'll have to initialize the variable too.
 
 To initialize a variable you'll have to use an integer from this enum:
 
